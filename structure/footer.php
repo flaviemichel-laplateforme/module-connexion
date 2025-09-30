@@ -1,6 +1,3 @@
-<link rel="stylesheet" href="../assets/css/style.css">
-
-
 <footer>
     <div class="container">
         <a href="https://github.com/flaviemichel-laplateforme"><img src="../assets/img/github.jpg" alt="GitHub"></a>
@@ -17,3 +14,6 @@
     </div>
 
 </footer>
+</body>
+
+</html>

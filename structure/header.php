@@ -24,4 +24,3 @@
         </nav>
     </header>
     <div class="container"> <!-- Container principal -->
-</body>
