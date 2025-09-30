@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
+<link rel="stylesheet" href="../assets/css/style.css">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Module Connexion</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-</head>
 
 <footer>
     <div class="container">
