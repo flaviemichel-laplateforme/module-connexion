@@ -1,0 +1,70 @@
+footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #138691;
+}
+
+footer img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+footer p {
+    color: white;
+}
+
+/* ********************************* FIN FOOTER *****************************************/
+
+/* ********************************* HEADER *****************************************/
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #138691;
+}
+
+header img {
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+}
+
+.nav-menu {
+    color: white;
+    text-decoration: none;
+}
+
+/* Styles pour le menu de navigation */
+nav ul {
+    list-style: none;
+    /* Enlève les puces */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    /* Aligne les éléments horizontalement */
+    gap: 20px;
+    /* Espacement entre les éléments */
+}
+
+nav li {
+    list-style: none;
+    /* Enlève les puces (sécurité) */
+}
+
+nav a {
+    text-decoration: none;
+    /* Enlève le soulignement */
+    color: white;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Effet au survol */
+    border-radius: 5px;
+}
+
+/* ********************************* FIN HEADER *****************************************/
