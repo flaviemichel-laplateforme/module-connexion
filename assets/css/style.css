@@ -68,3 +68,77 @@ nav a:hover {
 }
 
 /* ********************************* FIN HEADER *****************************************/
+
+/********************** DEBUT MISE EN FORME FORMULAIRE INSCRIPTION **********************/
+
+/* formulaire */
+
+.formulaire_inscription {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    width: 50%;
+    background-color: #ca9523;
+    color: #138691;
+    border-radius: 25px;
+    margin: 20px auto;
+}
+
+.formulaire_inscription button {
+    background-color: #138691;
+    color: white;
+}
+
+.formulaire_inscription input {
+    text-align: center;
+    /* ← Centre le texte ET le placeholder */
+}
+
+input::placeholder {
+    text-align: center;
+    /* Centre uniquement le placeholder */
+    color: #888;
+    /* Couleur grise */
+    opacity: 0.8;
+    /* Légère transparence */
+    font-style: italic;
+    /* Style italique */
+}
+
+/* titre formulaire avec logo */
+
+.titreh1 {
+    text-align: center;
+    color: #138691;
+    font-size: 3rem;
+    margin: 0%;
+    display: flex;
+    /* Pour aligner logo et texte */
+    align-items: center;
+    /* Centrage vertical */
+    justify-content: center;
+    /* Centrage horizontal */
+    gap: 15px;
+    /* Espacement entre logo et texte */
+}
+
+/* Style pour le petit logo dans le titre */
+.logo-titre {
+    width: 50px;
+    /* Taille du logo */
+    height: 50px;
+    object-fit: contain;
+    /* Maintient les proportions */
+    filter: brightness(1.1);
+    /* Légèrement plus lumineux */
+    transition: transform 0.3s ease;
+    /* Animation fluide */
+}
+
+/* Animation au survol du titre */
+.titreh1:hover .logo-titre {
+    transform: rotate(10deg) scale(1.1);
+    /* Rotation et agrandissement */
+}
+
+/**************** fin de mise en forme de mon formulaire ***********************/
