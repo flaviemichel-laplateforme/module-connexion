@@ -1,3 +1,18 @@
+<?php
+// Déterminer le chemin racine selon l'emplacement du fichier qui inclut ce header
+$currentDir = dirname($_SERVER['PHP_SELF']);
+$isInSubfolder = (strpos($currentDir, '/pages') !== false);
+
+// Définir le chemin de base selon si on est dans un sous-dossier ou à la racine
+$basePath = $isInSubfolder ? '../' : './';
+
+// Chemins vers les ressources
+$cssPath = $basePath . 'assets/css/style.css';
+$logoPath = $basePath . 'assets/img/logo.png';
+$indexPath = $isInSubfolder ? '../index.php' : 'index.php';
+$pagesPath = $isInSubfolder ? './' : 'pages/';
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -5,21 +20,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Module Connexion</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="<?= $cssPath; ?>">
 </head>
 
 <body>
     <header class="nav-menu">
         <div>
-            <img src="../assets/img/logo.png" alt="Logo" class="logo">
+            <img src="<?= $logoPath; ?>" alt="Logo" class="logo">
         </div>
         <nav>
             <ul>
-                <li><a href="index.php">Accueil</a></li>
-                <li><a href="pages/connexion.php">Connexion</a></li>
-                <li><a href="pages/inscription.php">Inscription</a></li>
-                <li><a href="pages/profil.php">Profil</a></li>
-                <li><a href="pages/admin.php">Admin</a></li>
+                <li><a href="<?= $indexPath; ?>">Accueil</a></li>
+                <li><a href="<?= $pagesPath; ?>connexion.php">Connexion</a></li>
+                <li><a href="<?= $pagesPath; ?>inscription.php">Inscription</a></li>
+                <li><a href="<?= $pagesPath; ?>profil.php">Profil</a></li>
+                <li><a href="<?= $pagesPath; ?>admin.php">Admin</a></li>
             </ul>
         </nav>
     </header>

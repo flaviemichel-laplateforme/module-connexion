@@ -1,6 +1,15 @@
+<?php
+// Utiliser la même logique de chemins que dans le header
+$currentDir = dirname($_SERVER['PHP_SELF']);
+$isInSubfolder = (strpos($currentDir, '/pages') !== false);
+$basePath = $isInSubfolder ? '../' : './';
+?>
+
 <footer>
     <div class="container">
-        <a href="https://github.com/flaviemichel-laplateforme"><img src="../assets/img/github.jpg" alt="GitHub"></a>
+        <a href="https://github.com/flaviemichel-laplateforme">
+            <img src="<?= $basePath; ?>assets/img/github.jpg" alt="GitHub">
+        </a>
     </div>
 
     <div>
@@ -10,7 +19,9 @@
     </div>
 
     <div class="container2">
-        <a href="#"><img src="../assets/img/linkedin.png" alt="LinkedIn"></a>
+        <a href="https://linkedin.com/in/votre-profil">
+            <img src="<?= $basePath; ?>assets/img/linkedin.png" alt="LinkedIn">
+        </a>
     </div>
 
 </footer>
