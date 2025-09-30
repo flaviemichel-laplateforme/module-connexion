@@ -1,9 +1,28 @@
 <?php
 include '../structure/header.php'; // Inclut le header
+
+if (isset($_POST['login']) && isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['password'])) {
+    require '../structure/db.php';
+    $connection = connect_pdo();
+
+    $sql = "INSERT INTO utilisateurs(login,nom,prenom,password) VALUE (?,?,?,?)";
+
+    $inscription = $connection->prepare($sql);
+    $inscription->execute([$_POST['login'], $_POST['nom'], $_POST['prenom'], $_POST['password']]);
+}
+
+
 ?>
 
-<main>
 
+
+<main>
+    <!-- Une page contenant un formulaire d’inscription (inscription.php) :
+Le formulaire doit contenir l’ensemble des champs présents dans la table
+“utilisateurs” (sauf “id”) + une confirmation de mot de passe. 
+Dès qu’un
+utilisateur remplit ce formulaire, les données sont insérées dans la base de
+données et l’utilisateur est redirigé vers la page de connexion. -->
 
 
     <form class="formulaire_inscription" action="" method="post">
