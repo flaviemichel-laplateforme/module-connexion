@@ -3,6 +3,18 @@ footer {
     justify-content: space-around;
     align-items: center;
     background-color: #138691;
+    padding: 20px 0;
+    /* Ajoute de l'espace interne */
+    margin-top: 50px;
+    /* Espacement avec le contenu */
+    width: 100%;
+    /* Prend toute la largeur */
+    position: relative;
+    /* Assure le positionnement */
+    clear: both;
+    /* Évite les chevauchements */
+    min-height: 80px;
+    /* Hauteur minimale */
 }
 
 footer img {
@@ -13,7 +25,22 @@ footer img {
 
 footer p {
     color: white;
+    font-size: 14px;
+    /* Taille de police claire */
+    text-align: center;
+    /* Centre le texte */
+    margin: 0;
+    /* Supprime les marges par défaut */
 }
+
+/* Styles pour les conteneurs du footer */
+footer .container,
+footer .container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 /* ********************************* FIN FOOTER *****************************************/
 

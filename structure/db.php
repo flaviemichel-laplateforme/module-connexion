@@ -1,5 +1,6 @@
 <?php
 // CREATION DE LA CONNEXION A LA BASE DE DONNEES
+
 function connect_pdo()
 {
     try {
