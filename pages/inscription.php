@@ -2,13 +2,15 @@
 include '../structure/header.php'; // Inclut le header
 
 if (isset($_POST['login']) && isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['password'])) {
-    require '../structure/db.php';
+    require_once '../structure/db.php';
     $connection = connect_pdo();
 
     $sql = "INSERT INTO utilisateurs(login,nom,prenom,password) VALUE (?,?,?,?)";
 
     $inscription = $connection->prepare($sql);
     $inscription->execute([$_POST['login'], $_POST['nom'], $_POST['prenom'], $_POST['password']]);
+
+    header("location:connexion.php");
 }
 
 
