@@ -47,7 +47,7 @@ données et l’utilisateur est redirigé vers la page de connexion. -->
         <label for="confirm_password">Confirmez le mot de passe:</label>
         <input placeholder="Confirmez le mot de passe" type="password" id="confirm_password" name="confirm_password" required>
 
-        <button>S'inscrire</button>
+        <input type="submit" value="S'inscrire">
 
     </form>
 
