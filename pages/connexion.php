@@ -33,8 +33,15 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
         $_SESSION['nom'] = $user['nom'];
         $_SESSION['prenom'] = $user['prenom'];
 
-        // Redirection correcte vers admin.php (dans le même dossier pages/)
-        header("location:admin.php");
+        // Stocker le rôle (si la colonne existe, sinon par défaut 'user')
+        $_SESSION['role'] = $user['login'] == "admin" ? "admin" : 'user';
+
+        // Redirection selon le rôle
+        if ($user['login'] == 'admin') {
+            header("location:admin.php");
+        } else {
+            header("location:profil.php");
+        }
         exit(); // Arrêter l'exécution après redirection
     } else {
         $error_message = "Login ou mot de passe incorrect!";

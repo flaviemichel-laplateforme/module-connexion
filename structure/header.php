@@ -7,7 +7,7 @@ $isInSubfolder = (strpos($currentDir, '/pages') !== false);
 $basePath = $isInSubfolder ? '../' : './';
 
 // Chemins vers les ressources
-$cssPath = $basePath . 'assets/css/style.css?v=' . time(); // Force le rechargement
+$cssPath = $basePath . 'assets/css/style.css';
 $logoPath = $basePath . 'assets/img/logo.png';
 $indexPath = $isInSubfolder ? '../index.php' : 'index.php';
 $pagesPath = $isInSubfolder ? './' : 'pages/';
@@ -31,8 +31,16 @@ $pagesPath = $isInSubfolder ? './' : 'pages/';
         <nav>
             <ul>
                 <li><a href="<?= $indexPath; ?>">Accueil</a></li>
-                <li><a href="<?= $pagesPath; ?>connexion.php">Connexion</a></li>
-                <li><a href="<?= $pagesPath; ?>inscription.php">Inscription</a></li>
+
+
+                <?php if (isset($_SESSION['login'])): ?>
+                    <li><a href="<?= $pagesPath; ?>deconnexion.php">Se déconnecter</a></li>
+                <?php else:  ?>
+                    <li><a href="<?= $pagesPath; ?>inscription.php">Inscription</a></li>
+                    <li><a href="<?= $pagesPath; ?>connexion.php">Connexion</a></li>
+                <?php endif; ?>
+
+
                 <li><a href="<?= $pagesPath; ?>profil.php">Profil</a></li>
                 <li><a href="<?= $pagesPath; ?>admin.php">Admin</a></li>
             </ul>
