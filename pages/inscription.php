@@ -17,6 +17,8 @@ if (isset($_POST['login']) && isset($_POST['nom']) && isset($_POST['prenom']) &&
     // Validation des données
     if (empty($login) || empty($nom) || empty($prenom) || empty($password)) {
         $error_message = "Tous les champs sont obligatoires !";
+    } elseif ($login === 'admin') {
+        $error_message = "Le nom d'utilisateur 'admin' est réservé et ne peut pas être utilisé !";
     } elseif ($password !== $confirm_password) {
         $error_message = "Les mots de passe ne correspondent pas !";
     } elseif (strlen($password) < 4) {

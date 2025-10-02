@@ -44,6 +44,91 @@ footer .container2 {
 
 /* ********************************* FIN FOOTER *****************************************/
 
+/* ********************************* ADMIN PAGE STYLES *****************************************/
+.admin-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-container h1 {
+    text-align: center;
+    color: #e09d0d;
+    margin-bottom: 30px;
+}
+
+.admin-container h2 {
+    color: #4da266;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #7fb069;
+    padding-bottom: 5px;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.users-table thead {
+    background: #138691;
+    color: white;
+}
+
+.users-table th,
+.users-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.users-table th {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.users-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.users-table tbody tr:hover {
+    background-color: #e8f5e8;
+}
+
+.total-count {
+    text-align: center;
+    color: #55492c;
+    font-size: 1.1em;
+    margin-top: 20px;
+    padding: 10px;
+    background: #e8f5e8;
+    border-radius: 5px;
+}
+
+.no-data {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-style: italic;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+/* ********************************* FIN ADMIN PAGE STYLES *****************************************/
+
 /* ********************************* HEADER *****************************************/
 header {
     display: flex;
@@ -346,6 +431,50 @@ input::placeholder {
 .titreh1:hover .logo-titre {
     transform: rotate(10deg) scale(1.1);
     /* Rotation et agrandissement */
+}
+
+/* Protection compte admin */
+.admin-protection-notice {
+    background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+    border: 2px solid #ffc107;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3);
+}
+
+.admin-protection-notice h3 {
+    color: #856404;
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+}
+
+.admin-protection-notice p {
+    color: #856404;
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+/* Champs désactivés pour admin */
+input[readonly],
+input[disabled] {
+    background-color: #f8f9fa !important;
+    color: #6c757d !important;
+    cursor: not-allowed !important;
+    border: 2px solid #e9ecef !important;
+    opacity: 0.7;
+}
+
+.disabled-btn {
+    background-color: #6c757d !important;
+    cursor: not-allowed !important;
+    opacity: 0.6;
+}
+
+.disabled-btn:hover {
+    background-color: #6c757d !important;
+    transform: none !important;
 }
 
 /* Messages de feedback */
