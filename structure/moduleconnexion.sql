@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 30, 2025 at 10:06 AM
+-- Generation Time: Oct 02, 2025 at 01:51 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -29,18 +29,21 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `utilisateurs` (
   `id` int NOT NULL,
-  `login` varchar(255) DEFAULT NULL,
-  `prenom` varchar(255) DEFAULT NULL,
-  `nom` varchar(255) DEFAULT NULL,
-  `Password` varchar(255) DEFAULT NULL
+  `login` varchar(255) NOT NULL,
+  `prenom` varchar(255) NOT NULL,
+  `nom` varchar(50) NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `utilisateurs`
 --
 
-INSERT INTO `utilisateurs` (`id`, `login`, `prenom`, `nom`, `Password`) VALUES
-(1, 'admin', 'admin', 'admin', 'admin');
+INSERT INTO `utilisateurs` (`id`, `login`, `prenom`, `nom`, `password`) VALUES
+(1, 'admin', 'admin', 'admin', 'admin'),
+(7, 'user', 'paul', 'user', 'user'),
+(8, 'elodie', 'elodie', 'dupont', 'AAAA'),
+(16, 'marlene', 'marlene', 'marlene', 'marlene');
 
 --
 -- Indexes for dumped tables
@@ -50,7 +53,9 @@ INSERT INTO `utilisateurs` (`id`, `login`, `prenom`, `nom`, `Password`) VALUES
 -- Indexes for table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `login` (`login`),
+  ADD UNIQUE KEY `login_2` (`login`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -60,7 +65,7 @@ ALTER TABLE `utilisateurs`
 -- AUTO_INCREMENT for table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
