@@ -26,10 +26,29 @@ $success_message = '';
 $error_message = '';
 
 // Traitement du formulaire
-if (isset($_POST['login']) && isset($_POST['nom']) && isset($_POST['prenom'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login']) && isset($_POST['nom']) && isset($_POST['prenom'])) {
+
+    // Nettoyer les données d'entrée
+    $login = trim($_POST['login']);
+    $nom = trim($_POST['nom']);
+    $prenom = trim($_POST['prenom']);
+
+    // Validation des champs obligatoires
+    if (empty($login) || empty($nom) || empty($prenom)) {
+        $error_message = "Tous les champs (login, nom, prénom) sont obligatoires.";
+    }
+
+    // Vérifier si le login n'est pas déjà utilisé par un autre utilisateur
+    elseif ($login !== $user['login']) {
+        $check_stmt = $connection->prepare("SELECT id FROM utilisateurs WHERE login = ? AND id != ?");
+        $check_stmt->execute([$login, $_SESSION['user_id']]);
+        if ($check_stmt->rowCount() > 0) {
+            $error_message = "Ce login est déjà utilisé par un autre utilisateur.";
+        }
+    }
 
     // Vérification des mots de passe si fournis
-    if (!empty($_POST['password']) || !empty($_POST['confirm_password'])) {
+    if (empty($error_message) && (!empty($_POST['password']) || !empty($_POST['confirm_password']))) {
         if ($_POST['password'] !== $_POST['confirm_password']) {
             $error_message = "Les mots de passe ne correspondent pas.";
         } elseif (strlen($_POST['password']) < 6) {
@@ -46,9 +65,9 @@ if (isset($_POST['login']) && isset($_POST['nom']) && isset($_POST['prenom'])) {
                 $sql = "UPDATE utilisateurs SET login = ?, nom = ?, prenom = ?, password = ? WHERE id = ?";
                 $profil = $connection->prepare($sql);
                 $profil->execute([
-                    $_POST['login'],
-                    $_POST['nom'],
-                    $_POST['prenom'],
+                    $login,
+                    $nom,
+                    $prenom,
                     $hashed_password,
                     $_SESSION['user_id']
                 ]);
@@ -57,17 +76,17 @@ if (isset($_POST['login']) && isset($_POST['nom']) && isset($_POST['prenom'])) {
                 $sql = "UPDATE utilisateurs SET login = ?, nom = ?, prenom = ? WHERE id = ?";
                 $profil = $connection->prepare($sql);
                 $profil->execute([
-                    $_POST['login'],
-                    $_POST['nom'],
-                    $_POST['prenom'],
+                    $login,
+                    $nom,
+                    $prenom,
                     $_SESSION['user_id']
                 ]);
             }
 
             // Mettre à jour les variables de session
-            $_SESSION['login'] = $_POST['login'];
-            $_SESSION['nom'] = $_POST['nom'];
-            $_SESSION['prenom'] = $_POST['prenom'];
+            $_SESSION['login'] = $login;
+            $_SESSION['nom'] = $nom;
+            $_SESSION['prenom'] = $prenom;
 
             // Recharger les données utilisateur pour le formulaire
             $stmt = $connection->prepare("SELECT * FROM utilisateurs WHERE id = ?");

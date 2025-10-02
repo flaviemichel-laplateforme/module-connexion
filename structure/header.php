@@ -1,4 +1,8 @@
 <?php
+// Démarrer la session seulement si elle n'est pas déjà active
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 // Déterminer le chemin racine selon l'emplacement du fichier qui inclut ce header
 $currentDir = dirname($_SERVER['PHP_SELF']);
 $isInSubfolder = (strpos($currentDir, '/pages') !== false);
@@ -32,17 +36,22 @@ $pagesPath = $isInSubfolder ? './' : 'pages/';
             <ul>
                 <li><a href="<?= $indexPath; ?>">Accueil</a></li>
 
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <!-- Utilisateur connecté -->
+                    <li><a href="<?= $pagesPath; ?>profil.php">Profil</a></li>
 
-                <?php if (isset($_SESSION['login'])): ?>
+                    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                        <li><a href="<?= $pagesPath; ?>admin.php">Admin</a></li>
+                    <?php endif; ?>
+
                     <li><a href="<?= $pagesPath; ?>deconnexion.php">Se déconnecter</a></li>
-                <?php else:  ?>
+
+                <?php else: ?>
+                    <!-- Utilisateur non connecté -->
                     <li><a href="<?= $pagesPath; ?>inscription.php">Inscription</a></li>
                     <li><a href="<?= $pagesPath; ?>connexion.php">Connexion</a></li>
                 <?php endif; ?>
 
-
-                <li><a href="<?= $pagesPath; ?>profil.php">Profil</a></li>
-                <li><a href="<?= $pagesPath; ?>admin.php">Admin</a></li>
             </ul>
         </nav>
     </header>
