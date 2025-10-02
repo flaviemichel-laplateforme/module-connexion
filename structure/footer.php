@@ -19,7 +19,7 @@ $basePath = $isInSubfolder ? '../' : './';
     </div>
 
     <div class="container2">
-        <a href="https://linkedin.com/in/votre-profil">
+        <a href="https://www.linkedin.com/in/flavie-michel-a112a41b7/">
             <img src="<?= $basePath; ?>assets/img/linkedin.png" alt="LinkedIn">
         </a>
     </div>
