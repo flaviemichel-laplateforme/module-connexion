@@ -34,7 +34,7 @@ if (isset($_POST['login']) && isset($_POST['nom']) && isset($_POST['prenom']) &&
             if ($check_stmt->rowCount() > 0) {
                 $error_message = "Ce nom d'utilisateur existe déjà ! Choisissez un autre login.";
             } else {
-                // Insérer le nouvel utilisateur (correction de la syntaxe SQL)
+                // Insérer le mot de passe en clair (sans hachage)
                 $sql = "INSERT INTO utilisateurs(login, nom, prenom, Password) VALUES (?, ?, ?, ?)";
                 $inscription = $connection->prepare($sql);
                 $inscription->execute([$login, $nom, $prenom, $password]);

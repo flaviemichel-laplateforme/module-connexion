@@ -1,19 +1,30 @@
 <?php
 session_start(); // Session AVANT tout output HTML
 
-// Fonction de vérification utilisateur
+// Fonction de vérification utilisateur avec mots de passe en clair
 function getUser($login, $password)
 {
     require_once '../structure/db.php';
     $connection = connect_pdo();
 
-    $req = $connection->prepare("SELECT * FROM utilisateurs WHERE login = ? AND password = ?");
+    // Récupérer l'utilisateur par login et password directement
+    $req = $connection->prepare("SELECT * FROM utilisateurs WHERE login = ? AND Password = ?");
     $req->execute([$login, $password]);
 
     if ($req->rowCount() == 1) {
         return $req->fetch();
+    } elseif ($req->rowCount() == 0) {
+        // Vérifier si le login existe pour donner un message d'erreur précis
+        $check_login = $connection->prepare("SELECT * FROM utilisateurs WHERE login = ?");
+        $check_login->execute([$login]);
+
+        if ($check_login->rowCount() > 0) {
+            return ['error' => 'wrong_password']; // Login existe mais mot de passe incorrect
+        } else {
+            return ['error' => 'login_not_found']; // Login n'existe pas
+        }
     } else {
-        return false;
+        return ['error' => 'duplicate_login']; // Plusieurs utilisateurs avec le même login
     }
 }
 
@@ -26,8 +37,8 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
     // Vérification de l'utilisateur
     $user = getUser($login, $password);
 
-    if ($user) {
-        // Créer les variables de session
+    if ($user && !isset($user['error'])) {
+        // Connexion réussie - créer les variables de session
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['login'] = $user['login'];
         $_SESSION['nom'] = $user['nom'];
@@ -44,7 +55,27 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
         }
         exit(); // Arrêter l'exécution après redirection
     } else {
-        $error_message = "Login ou mot de passe incorrect!";
+        // Gestion des erreurs spécifiques
+        if (isset($user['error'])) {
+            switch ($user['error']) {
+                case 'login_not_found':
+                    $error_message = "Ce nom d'utilisateur n'existe pas !";
+                    break;
+                case 'wrong_password':
+                    $error_message = "Mot de passe incorrect pour cet utilisateur !";
+                    break;
+                case 'duplicate_login':
+                    $error_message = "Erreur de base de données : plusieurs utilisateurs avec le même login !";
+                    break;
+                case 'no_password':
+                    $error_message = "Erreur : aucun mot de passe configuré pour cet utilisateur !";
+                    break;
+                default:
+                    $error_message = "Erreur de connexion inconnue !";
+            }
+        } else {
+            $error_message = "Login ou mot de passe incorrect!";
+        }
     }
 }
 

@@ -50,6 +50,10 @@ header {
     justify-content: space-between;
     align-items: center;
     background-color: #138691;
+    padding: 10px 20px;
+    /* Espacement interne */
+    min-height: 80px;
+    /* Hauteur minimale pour le message */
 }
 
 header img {
@@ -92,6 +96,37 @@ nav a:hover {
     background-color: rgba(255, 255, 255, 0.1);
     /* Effet au survol */
     border-radius: 5px;
+}
+
+/* Message de bienvenue dans le header */
+.welcome-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    /* Prend l'espace disponible entre logo et nav */
+}
+
+.welcome-message h2 {
+    color: white;
+    font-size: 1.8em;
+    /* Grande taille */
+    font-weight: 300;
+    /* Plus léger */
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    /* Ombre pour lisibilité */
+    letter-spacing: 1px;
+    /* Espacement des lettres */
+}
+
+.welcome-message strong {
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    /* Nom en majuscules */
+    font-size: 1.1em;
+    /* Légèrement plus grand */
 }
 
 /* ********************************* FIN HEADER *****************************************/
@@ -337,3 +372,175 @@ input::placeholder {
 }
 
 /* **********************FIN FORMULAIRE MODIFICATION PROFIL *************************/
+
+/* **********************STYLES PAGE D'ACCUEIL - BLOCS CATÉGORIES *************************/
+
+/* Container principal de l'accueil */
+.container_accueil {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.container_accueil h1 {
+    font-size: 3em;
+    color: #2d5a27;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sous-titre {
+    font-size: 1.3em;
+    color: #138691;
+    margin-bottom: 50px;
+    font-weight: 300;
+}
+
+/* Grille des catégories */
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* Bloc de catégorie de base */
+.category-block {
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+}
+
+.category-block:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+.category-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.category-block:hover::before {
+    opacity: 1;
+}
+
+/* Icône de catégorie */
+.category-icon {
+    font-size: 4em;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.category-block h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.category-block p {
+    font-size: 1.1em;
+    line-height: 1.5;
+    opacity: 0.95;
+    margin: 0;
+}
+
+/* Couleurs spécifiques par catégorie */
+
+/* Plantes d'intérieur - Vert forêt */
+.category-interieur {
+    background: linear-gradient(135deg, #2d5a27, #4a7c59);
+}
+
+/* Arbres et arbustes - Brun naturel */
+.category-arbres {
+    background: linear-gradient(135deg, #8b4513, #a0522d);
+}
+
+/* Plantes annuelles - Rose/Magenta */
+.category-annuelles {
+    background: linear-gradient(135deg, #e91e63, #f06292);
+}
+
+/* Plantes vivaces - Violet/Pourpre */
+.category-vivaces {
+    background: linear-gradient(135deg, #9c27b0, #ba68c8);
+}
+
+/* Plants potagers - Orange/Carotte */
+.category-potager {
+    background: linear-gradient(135deg, #ff9800, #ffb74d);
+}
+
+/* Arbres fruitiers - Rouge/Pomme */
+.category-fruitiers {
+    background: linear-gradient(135deg, #f44336, #ef5350);
+}
+
+/* Animation d'apparition */
+.category-block {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container_accueil h1 {
+        font-size: 2.2em;
+    }
+
+    .categories-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .category-block {
+        padding: 30px 20px;
+    }
+
+    .category-icon {
+        font-size: 3em;
+    }
+
+    .category-block h3 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    .container_accueil {
+        padding: 20px 15px;
+    }
+
+    .category-block {
+        padding: 25px 15px;
+    }
+}
+
+/* **********************FIN STYLES PAGE D'ACCUEIL - BLOCS CATÉGORIES *************************/

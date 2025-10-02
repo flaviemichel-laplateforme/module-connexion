@@ -32,6 +32,14 @@ $pagesPath = $isInSubfolder ? './' : 'pages/';
         <div>
             <img src="<?= $logoPath; ?>" alt="Logo" class="logo">
         </div>
+
+        <!-- Message de bienvenue pour utilisateur connecté -->
+        <?php if (isset($_SESSION['user_id']) && isset($_SESSION['login'])): ?>
+            <div class="welcome-message">
+                <h2>Bienvenue <strong><?php echo htmlspecialchars($_SESSION['login']); ?></strong> !</h2>
+            </div>
+        <?php endif; ?>
+
         <nav>
             <ul>
                 <li><a href="<?= $indexPath; ?>">Accueil</a></li>
