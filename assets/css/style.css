@@ -1,3 +1,42 @@
+/* ********************************* RESET / BASE RESPONSIVE *****************************************/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Le conteneur ouvert dans header.php (englobe <main> et <footer>) :
+   on le fait grandir pour que le footer reste toujours en bas de l'écran,
+   même quand le contenu de la page est court. */
+body>.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ********************************* FIN RESET / BASE RESPONSIVE *****************************************/
+
 footer {
     display: flex;
     justify-content: space-around;
@@ -41,6 +80,20 @@ footer .container2 {
     align-items: center;
 }
 
+
+/* Responsive footer */
+@media (max-width: 768px) {
+    footer {
+        flex-direction: column;
+        gap: 12px;
+        padding: 15px 10px;
+        min-height: auto;
+    }
+
+    footer p {
+        padding: 0 10px;
+    }
+}
 
 /* ********************************* FIN FOOTER *****************************************/
 
@@ -125,6 +178,31 @@ footer .container2 {
     border: 1px solid #f5c6cb;
     border-radius: 5px;
     margin: 20px 0;
+}
+
+/* Responsive admin page */
+@media (max-width: 768px) {
+    .admin-container {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .admin-container h1 {
+        font-size: 1.6em;
+    }
+
+    .users-table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+    }
+
+    .users-table th,
+    .users-table td {
+        padding: 8px;
+        font-size: 0.85em;
+    }
 }
 
 /* ********************************* FIN ADMIN PAGE STYLES *****************************************/
@@ -256,6 +334,57 @@ nav a.active:hover {
     /* Nom en majuscules */
     font-size: 1.1em;
     /* Légèrement plus grand */
+}
+
+/* Responsive header / navigation */
+@media (max-width: 640px) {
+    header {
+        flex-wrap: wrap;
+        justify-content: center;
+        row-gap: 10px;
+        padding: 10px;
+        min-height: auto;
+    }
+
+    header img {
+        width: 70px;
+    }
+
+    .welcome-message {
+        order: 3;
+        flex-basis: 100%;
+        justify-content: center;
+    }
+
+    .welcome-message h2 {
+        font-size: 1.2em;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    nav a {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    header img {
+        width: 55px;
+    }
+
+    .welcome-message h2 {
+        font-size: 1em;
+    }
+
+    nav a {
+        padding: 6px 10px;
+        font-size: 0.85em;
+    }
 }
 
 /* ********************************* FIN HEADER *****************************************/
@@ -543,6 +672,151 @@ input[disabled] {
     text-align: center;
     font-weight: bold;
 }
+
+/* Responsive formulaires - tablette (ex: iPad 768-1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+    .formulaire_connexion,
+    .formulaire_inscription,
+    .formulaire_modification_profil {
+        width: 70%;
+        padding: 35px 30px;
+    }
+
+    .titreh1 {
+        font-size: 2.2rem;
+        gap: 10px;
+    }
+
+    .logo-titre {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Responsive formulaires (connexion, inscription, modification profil) */
+@media (max-width: 768px) {
+
+    .formulaire_connexion,
+    .formulaire_inscription,
+    .formulaire_modification_profil {
+        width: 85%;
+        padding: 30px 20px;
+    }
+
+    .titreh1 {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .formulaire_connexion,
+    .formulaire_inscription,
+    .formulaire_modification_profil {
+        width: 95%;
+        padding: 20px 15px;
+        margin: 15px auto;
+        border-radius: 15px;
+    }
+
+    .titreh1 {
+        font-size: 1.5rem;
+    }
+
+    .logo-titre {
+        width: 35px;
+        height: 35px;
+    }
+
+    .admin-protection-notice {
+        padding: 15px;
+    }
+}
+
+/* **********************BOUTONS & CHAMPS DE FORMULAIRE (style commun) *************************/
+
+.formulaire_connexion,
+.formulaire_inscription,
+.formulaire_modification_profil {
+    gap: 12px;
+}
+
+.formulaire_connexion label,
+.formulaire_inscription label,
+.formulaire_modification_profil label {
+    font-weight: 600;
+}
+
+.formulaire_connexion input[type="text"],
+.formulaire_connexion input[type="password"],
+.formulaire_inscription input[type="text"],
+.formulaire_inscription input[type="password"],
+.formulaire_modification_profil input[type="text"],
+.formulaire_modification_profil input[type="password"] {
+    padding: 12px 15px;
+    border: 2px solid #e0d5b8;
+    border-radius: 10px;
+    font-size: 1em;
+    font-family: inherit;
+    background-color: white;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.formulaire_connexion input[type="text"]:focus,
+.formulaire_connexion input[type="password"]:focus,
+.formulaire_inscription input[type="text"]:focus,
+.formulaire_inscription input[type="password"]:focus,
+.formulaire_modification_profil input[type="text"]:focus,
+.formulaire_modification_profil input[type="password"]:focus {
+    outline: none;
+    border-color: #138691;
+    box-shadow: 0 0 0 3px rgba(19, 134, 145, 0.25);
+}
+
+.formulaire_connexion button,
+.formulaire_connexion input[type="submit"],
+.formulaire_inscription button,
+.formulaire_inscription input[type="submit"],
+.formulaire_modification_profil button,
+.formulaire_modification_profil input[type="submit"] {
+    background-color: #138691;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    font-family: inherit;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background-color 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
+}
+
+.formulaire_connexion button:hover,
+.formulaire_connexion input[type="submit"]:hover,
+.formulaire_inscription button:hover,
+.formulaire_inscription input[type="submit"]:hover,
+.formulaire_modification_profil button:hover,
+.formulaire_modification_profil input[type="submit"]:hover {
+    background-color: #0f6b73;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.formulaire_connexion button:active,
+.formulaire_connexion input[type="submit"]:active,
+.formulaire_inscription button:active,
+.formulaire_inscription input[type="submit"]:active,
+.formulaire_modification_profil button:active,
+.formulaire_modification_profil input[type="submit"]:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* **********************FIN BOUTONS & CHAMPS DE FORMULAIRE *************************/
 
 /* **********************FIN FORMULAIRE MODIFICATION PROFIL *************************/
 
